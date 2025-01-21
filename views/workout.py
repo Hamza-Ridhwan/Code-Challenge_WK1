@@ -33,7 +33,17 @@ def add_workout():
 def get_workouts():
     user_id = get_jwt_identity()
     workouts = Workout.query.filter_by(user_id=user_id).all()
-    return jsonify([{'id': w.id, 'workout_type': w.workout_type, 'duration': w.duration, 'calories_burned': w.calories_burned} for w in workouts])
+    return jsonify(
+        [
+            {
+                'id': w.id, 
+                'workout_type': w.workout_type, 
+                'duration': w.duration, 
+                'calories_burned': w.calories_burned
+            } 
+            for w in workouts
+        ]
+    )
 
 
 # Update Workout
